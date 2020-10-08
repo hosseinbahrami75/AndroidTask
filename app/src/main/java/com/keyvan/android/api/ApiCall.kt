@@ -1,16 +1,23 @@
 package com.keyvan.android.api
 
+import com.keyvan.android.api.models.response.MoviesBean
+import kotlinx.coroutines.Deferred
+import retrofit2.http.GET
+import retrofit2.http.Query
+
 interface ApiCall {
 
-    /* //Register (Step_1)
-     @POST("register/send-code")
-     fun requestRegisterAsync(
-         @Body requestRegister: RequestRegister
-     ): Deferred<RegisterResponse>*/
+     //GetMovies
+     @GET("3/discover/movie?api_key=59ef0aed8a8ebcd7164d2a7507b1303b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1")
+     fun getMoviesAsync(
+//         @Query("page") page: String
+     ): Deferred<MoviesBean>
 
 
-    /*//Get Profile
-    @GET("users/profile")
-    fun getProfileAsync(): Deferred<ProfileBean>*/
-
+    //Search in Movies
+    @GET("3/discover/movie?api_key=59ef0aed8a8ebcd7164d2a7507b1303b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false")
+    fun searchInMoviesAsync(
+        @Query("page") page: String,
+        @Query("query") query: String
+    ): Deferred<MoviesBean>
 }
