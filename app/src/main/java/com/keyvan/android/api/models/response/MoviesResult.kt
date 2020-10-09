@@ -1,5 +1,9 @@
 package com.keyvan.android.api.models.response
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class MoviesResult(
     val adult: Boolean,
     val backdrop_path: String,
@@ -15,4 +19,4 @@ data class MoviesResult(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) : Parcelable

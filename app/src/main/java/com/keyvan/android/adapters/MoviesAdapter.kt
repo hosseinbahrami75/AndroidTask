@@ -1,5 +1,6 @@
 package com.keyvan.android.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import com.keyvan.android.databinding.MovieItemBinding
 
 class MoviesAdapter(
     private val context: Context,
-    private var moviesResults: MutableList<MoviesResult>,
     private var onclick: ((MoviesResult) -> Unit)?
 ) :
     RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
@@ -18,11 +18,17 @@ class MoviesAdapter(
         setHasStableIds(true)
     }
 
+    private var moviesResults = mutableListOf<MoviesResult>()
+
     class MoviesViewHolder(
         private val binding: MovieItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(item: MoviesResult, context: Context, onclick: ((MoviesResult) -> Unit)?) {
             binding.data = item
+
+            binding.rate.rating = item.vote_average.toFloat()
+            binding.playersCount.text = "vote counts: ${item.vote_count}"
 
             binding.item.setOnClickListener {
                 onclick.let { click ->

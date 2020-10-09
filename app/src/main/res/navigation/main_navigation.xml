@@ -24,6 +24,10 @@
         android:name="com.keyvan.android.ui.movieDetails.MovieDetailsFragment"
         android:label="MovieDetails">
 
+        <argument
+            android:name="data"
+            app:argType="com.keyvan.android.api.models.response.MoviesResult" />
+
     </fragment>
 
 
