@@ -10,7 +10,13 @@ class MoviesViewModel: ViewModel() {
 
     private var moviesData = MutableLiveData<MoviesData>()
     fun getMoviesData(): MutableLiveData<MoviesData> = moviesData
-    fun getMovies(page: String) {
+    fun getMovies(page: Int) {
         moviesData = repository.getMovies(page)
+    }
+
+    private var searchMoviesData = MutableLiveData<MoviesData>()
+    fun getSearchMoviesData(): MutableLiveData<MoviesData> = searchMoviesData
+    fun searchMovies(page: Int, query: String) {
+        searchMoviesData = repository.searchMovies(page, query)
     }
 }
